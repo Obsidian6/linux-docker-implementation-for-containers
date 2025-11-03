@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discover Linux — Learn, Explore, Contribute</title>
+  <meta name="description" content="Discover Linux — approachable guides, key commands, and learning paths for newcomers and curious builders." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-0:#07090c;
+      --bg-1:#0c1116;
+      --panel:#0f1720;
+      --muted:#9aa6b2;
+      --glass: rgba(255,255,255,0.03);
+      --accent:#61dafb;
+      --accent-2:#7ee787;
+      --radius:14px;
+      --container:1100px;
+      color-scheme: dark;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:#e6eef6;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-0) 0%, var(--bg-1) 100%);-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto}
+
+    .wrap{max-width:var(--container);margin:48px auto;padding:32px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#0b1220,#122029);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .logo svg{width:30px;height:30px;filter:drop-shadow(0 6px 12px rgba(97,218,251,0.06))}
+    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:0.2px}
+    .brand p{margin:0;font-size:13px;color:var(--muted)}
+
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a.cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:10px 14px;border-radius:10px;color:#071017}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:28px;align-items:center}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:28px;border-radius:var(--radius);box-shadow:0 8px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02)}
+    .eyebrow{display:inline-block;background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:14px}
+    h2{margin:8px 0 14px;font-size:30px;line-height:1.06}
+    p.lead{color:var(--muted);margin:0 0 22px}
+
+    .kpis{display:flex;gap:12px;margin-top:18px}
+    .kpi{background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:12px;border-radius:12px;min-width:120px;text-align:center}
+    .kpi h3{margin:0;font-size:18px}
+    .kpi p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    .screenshot{background:linear-gradient(180deg,#071217 0%, #05161b 100%);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.02);box-shadow:inset 0 1px 0 rgba(255,255,255,0.01)}
+    .mock-terminal{background:linear-gradient(180deg,#081217, #061018);border-radius:10px;padding:18px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;font-size:13px;color:#d7eef8;line-height:1.7}
+    .terminal-line{opacity:0.95}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted);font-size:12px}
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .feature{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:12px;min-height:140px;border:1px solid rgba(255,255,255,0.01)}
+    .feature h4{margin:0 0 8px;color:#fff}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+
+    .cta-strip{margin-top:32px;background:linear-gradient(90deg,rgba(97,218,251,0.03),transparent);padding:20px;border-radius:12px;display:flex;align-items:center;justify-content:space-between}
+    .cta-left h3{margin:0 0 6px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071017}
+    .btn-ghost{border:1px solid rgba(255,255,255,0.06);color:var(--muted);background:transparent}
+
+    footer{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+    footer p{margin:0;color:var(--muted)}
+
+    @media (max-width:1000px){.hero{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}.wrap{padding:18px}}
+    @media (max-width:640px){.features{grid-template-columns:1fr}.nav-right{display:none}.brand h1{font-size:16px}.hero{gap:18px}}
+
+    .logo::after{content:"";position:absolute;width:60px;height:60px;border-radius:12px;opacity:0.04;filter:blur(14px);background:linear-gradient(90deg,rgba(97,218,251,0.12),transparent);transform:translate(-10px,-10px)}
+    .muted{color:var(--muted)}
+    code.shell{background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:6px;color:#dbeefb}
+
+    .grid-slim{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card-slim{background:transparent;border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.02)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand" style="position:relative">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Discover Linux logo">
+            <path d="M12 2c3 0 7 3 7 7s-2 9-7 13c-5-4-7-10-7-13s4-7 7-7z" fill="url(#g)"/>
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop stop-color="#61dafb" offset="0"/>
+                <stop stop-color="#7ee787" offset="1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <h1>Discover Linux</h1>
+          <p class="muted">Learn the OS that powers servers, phones, clouds and your curiosity</p>
+        </div>
+      </div>
+
+      <nav class="nav-right">
+        <a href="#about">What is Linux</a>
+        <a href="#learn">Get started</a>
+        <a href="#resources">Resources</a>
+        <a class="cta" href="#explore">Explore</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card">
+          <span class="eyebrow">Open source • Beginner-friendly</span>
+          <h2>Learn Linux — from first commands to building real projects.</h2>
+          <p class="lead">A clear path for newcomers: essential commands, recommended distributions, guided exercises, and short projects to help you level up.</p>
+
+          <div style="display:flex;gap:12px;align-items:center">
+            <a class="btn btn-primary" href="#learn">Start learning</a>
+            <a class="btn btn-ghost" href="#resources" style="margin-left:8px">Browse resources</a>
+          </div>
+
+          <div class="kpis" aria-hidden>
+            <div class="kpi">
+              <h3>5 mins</h3>
+              <p>Quick install guide</p>
+            </div>
+            <div class="kpi">
+              <h3>20+</h3>
+              <p>Hands-on exercises</p>
+            </div>
+            <div class="kpi">
+              <h3>Free</h3>
+              <p>Open-source learning</p>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:13px">
+            <strong>Focus areas:</strong> Command line · Filesystem basics · Package management · Containers · Contributing to OSS
+          </div>
+        </div>
+
+        <aside class="screenshot" aria-hidden="true">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div>
+              <div class="badge">Beginner Track</div>
+              <div style="font-weight:700;margin-top:8px">Command line essentials</div>
+            </div>
+            <div style="font-size:13px;color:var(--muted)">Updated: Nov 3, 2025</div>
+          </div>
+
+          <div class="mock-terminal" role="region" aria-label="Example terminal commands">
+            <div class="terminal-line"><span style="color:#7ee787">$</span> <code class="shell">whoami</code></div>
+            <div class="terminal-line"><span style="color:#7ee787">$</span> <code class="shell">ls -la ~</code></div>
+            <div class="terminal-line"><span style="color:#7ee787">$</span> <code class="shell">sudo apt update && sudo apt upgrade</code></div>
+            <div style="margin-top:10px;color:var(--muted);font-size:13px">Try a safe, guided sandbox to practice these commands.</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="features" class="features" aria-label="Key features">
+        <div class="feature">
+          <h4>Start with the basics</h4>
+          <p>Step-by-step lessons: getting comfortable with the shell, files & permissions, users, and editing with a terminal editor.</p>
+        </div>
+        <div class="feature">
+          <h4>Choose a distro</h4>
+          <p>Concise guides for Ubuntu, Fedora, Linux Mint, and lightweight distros — plus how to pick the right one for learning or production.</p>
+        </div>
+        <div class="feature">
+          <h4>Real projects</h4>
+          <p>Short, practical projects: host a static site, run a container, automate tasks with scripts, and contribute to an open-source repo.</p>
+        </div>
+        <div class="feature">
+          <h4>Package management</h4>
+          <p>Understand apt, dnf, pacman, and snaps — install, update, and manage packages confidently across distros.</p>
+        </div>
+        <div class="feature">
+          <h4>Secure & stable</h4>
+          <p>Learn best practices: least-privilege, SSH keys, firewalls, and simple backup strategies to keep systems resilient.</p>
+        </div>
+        <div class="feature">
+          <h4>Community & help</h4>
+          <p>Links to forums, IRC/Matrix rooms, and friendly communities where beginners get fast, respectful help.</p>
+        </div>
+      </section>
+
+      <section class="cta-strip" id="learn">
+        <div class="cta-left">
+          <h3>Ready to try? A short learning path for absolute beginners</h3>
+          <p class="muted" style="margin:6px 0 0">Install a distro in 5 minutes, open a terminal, and complete your first three exercises.</p>
+        </div>
+        <div>
+          <a class="btn btn-primary" href="#get-started" style="margin-right:10px">Get started</a>
+          <a class="btn btn-ghost" href="#projects">Exercises</a>
+        </div>
+      </section>
+
+      <section style="margin-top:30px;display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
+        <div class="hero-card" id="about">
+          <h3>About Discover Linux</h3>
+          <p class="muted">Practical, hands-on guides and curated resources to help newcomers grow into confident Linux users and contributors. Focused on clarity, accessibility, and real-world tasks.</p>
+
+          <ul style="margin-top:12px;color:var(--muted)">
+            <li>Small, focused lessons you can complete in 10–30 minutes</li>
+            <li>Playground sandboxes for safe experimentation</li>
+            <li>Community-driven resources and contribution tips</li>
+          </ul>
+        </div>
+
+        <aside class="hero-card" id="resources">
+          <h4 style="margin-top:0">Quick resources</h4>
+          <p class="muted">Select a path to begin.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+            <a class="btn btn-primary" href="#install">Install a distro</a>
+            <a class="btn btn-ghost" href="#commands">Essential commands</a>
+            <a class="btn btn-ghost" href="#projects">Beginner projects</a>
+          </div>
+        </aside>
+      </section>
+
+      <section style="margin-top:28px">
+        <div class="hero-card">
+          <h3 style="margin-top:0">Starter checklist</h3>
+          <div style="margin-top:12px;color:var(--muted);display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+            <div class="card-slim">
+              <div class="pill">Install</div>
+              <div style="font-weight:700;margin-top:8px">Pick a distro</div>
+              <div class="muted" style="margin-top:6px;font-size:13px">Ubuntu or Fedora are great for beginners.</div>
+            </div>
+            <div class="card-slim">
+              <div class="pill">Practice</div>
+              <div style="font-weight:700;margin-top:8px">Open the terminal</div>
+              <div class="muted" style="margin-top:6px;font-size:13px">Try commands like <code class="shell">ls</code>, <code class="shell">cd</code>, <code class="shell">man</code>.</div>
+            </div>
+            <div class="card-slim">
+              <div class="pill">Contribute</div>
+              <div style="font-weight:700;margin-top:8px">Find a small issue</div>
+              <div class="muted" style="margin-top:6px;font-size:13px">Fix docs, test a package, or report a bug.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>© <strong>Discover Linux</strong> · Educational demo — not affiliated with any distribution.</p>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a class="muted" href="#privacy">Privacy</a>
+        <a class="muted" href="#terms">Terms</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
